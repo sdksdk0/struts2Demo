@@ -20,22 +20,65 @@
 	</package> -->
 	
 	<!-- 请求的动作名称和动作类中的动作方法名称一致 -->
-	<package name="user"    extends="struts-default">
-		<!-- <action name="addUser" class="cn.tf.action.UserAction"  method="addUser">
+	<!-- <package name="user"    extends="struts-default">
+		<action name="addUser" class="cn.tf.action.UserAction"  method="addUser">
 			<result name="success" >/success.jsp</result>
 		</action>
 		<action name="delUser" class="cn.tf.action.UserAction"  method="delUser">
 			<result name="success" >/success.jsp</result>
-		</action> -->
+		</action>
 		
-		<!-- 使用通配符来改进，第一个*是什么，{1}就是什么 -->
+		使用通配符来改进，第一个*是什么，{1}就是什么
 		<action name="*" class="cn.tf.action.UserAction"  method="{1}">
 			<result name="success" >/success.jsp</result>
 		</action>
 		
+		<action name="*_*" class="cn.tf.action.{2}Action"  method="{1}{2}">
+			<result name="success" >/{1}{2}.jsp</result>
+		</action>
+		
+		<action name="user" class="cn.tf.action.UserAction"  >
+			<result name="success"  >/success.jsp</result>
+		</action>
+		
+		 -->
+		 
+	<!--  <constant name="struts.devMode" value="true"></constant>
+	 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<include file="user.xml"></include>		
+
+	<package name="p1" extends="struts-default">
+		<action name="demo3" class="cn.tf.action.ActionDemo3">
+			一个动作转向另外一个动作
+			<result name="success" type="chain">
+				<param name="namespace">/p2</param>
+				<param name="actionName">demo4</param>
+			</result>
+		</action>
+		
+		 
+	</package>
+	
+	<package name="p2" extends="struts-default" namespace="/p2">
+	<action name="demo4">
+			<result name="success" type="dispatcher"  >/success.jsp</result>
+		</action>
 	
 	</package>
-
+ -->
+ 		
+ 		<constant name="struts.devMode" value="true"></constant>
+ 		<package name="user" extends="struts-default">
+ 			<action name="login" class="cn.tf.login.LoginDemo"   method="login">
+ 				<result name="success">/index.jsp</result>
+ 				<result name="error">/message.jsp</result>
+ 			</action>
+ 		
+ 		</package>
+ 
+ 
+ 
+ 	
 
 	
 </struts>
